@@ -34,14 +34,11 @@ namespace Amores_Coin
 
         }
 
-        private void trackBar1_Scroll_1(object sender, EventArgs e)
-        {
-            BitmapFilter.NegativeThreshold(ref loaded, ref processed, trackBar1.Value);
-            pictureBox1.Image = processed;
-        }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            BitmapFilter.NegativeThreshold(ref loaded, ref processed, 174);
+            pictureBox1.Image = processed;
             double sum = 0;
             //locate objects
             BlobCounter blobCounter = new BlobCounter();
@@ -53,8 +50,6 @@ namespace Amores_Coin
             Pen redPen = new Pen(Color.Red, 2);
 
             SimpleShapeChecker shapeChecker = new SimpleShapeChecker();
-
-            Console.WriteLine(blobs.Length);
 
             for (int i = 0, n = blobs.Length; i < n; i++)
             {
@@ -101,7 +96,9 @@ namespace Amores_Coin
             g.Dispose();
 
             
-            MessageBox.Show("Total: " + sum);
+            MessageBox.Show("Total: " + sum + "\nCount of coins: " + blobs.Length);
+            pictureBox1.Image = loaded;
         }
+
     }
 }
